@@ -11,9 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('familias_profesionales', function (Blueprint $table) {
+        Schema::create('resultados_aprendizaje', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('modulo_id')
+                ->constrained('modulos')
+                ->cascadeOnDelete();
+            $table->string('codigo', 5);             // Ej: "RA1", "RA2"
+            $table->text('descripcion');
             $table->timestamps();
+
+            $table->unique(['modulo_id', 'codigo']);
         });
     }
 
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('familias_profesionales');
+        Schema::dropIfExists('resultados_aprendizaje');
     }
 };

@@ -9,10 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // database/migrations/xxxx_create_familias_profesionales_table.php
+
     public function up(): void
     {
-        Schema::create('resultados_aprendizaje', function (Blueprint $table) {
+        Schema::create('familias_profesionales', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('codigo', 10)->unique();
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resultados_aprendizaje');
+        Schema::dropIfExists('familias_profesionales');
     }
 };

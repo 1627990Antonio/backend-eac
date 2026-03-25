@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('modulos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('ciclo_formativo_id')
+                ->nullable()
+                ->constrained('ciclos_formativos')
+                ->cascadeOnDelete();
+            $table->string('nombre');
+            $table->string('codigo', 20);             // Ej: "0614"
+            $table->unsignedSmallInteger('horas_totales')->default(0);
+            $table->text('descripcion')->nullable();
             $table->timestamps();
+
+            $table->unique(['ciclo_formativo_id', 'codigo']);
         });
     }
 

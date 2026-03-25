@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('ciclos_formativos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('familia_profesional_id')
+                ->constrained('familias_profesionales')
+                ->cascadeOnDelete();
+            $table->string('nombre');
+            $table->string('codigo', 10)->unique();
+            $table->enum('grado', ['GB', 'GM', 'GS', 'CE']);
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
     }

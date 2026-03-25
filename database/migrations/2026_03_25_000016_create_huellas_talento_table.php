@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sc_criterios_evaluacion', function (Blueprint $table) {
+        Schema::create('huellas_talento', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sc_criterios_evaluacion');
+        Schema::dropIfExists('huellas_talento');
     }
 };
