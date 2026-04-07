@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('huellas_talento', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('estudiante_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('ecosistema_laboral_id')->constrained('ecosistemas_laborales')->cascadeOnDelete();
+            $table->json('payload');
+            $table->string('ngsi_ld_id');
+            $table->timestamp('generada_en')->useCurrent();
             $table->timestamps();
         });
     }
