@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -21,15 +19,12 @@ class CiclosFormativosSeeder extends Seeder
             return;
         }
 
-        // Leer todas las líneas y parsear con str_getcsv
         $rows = array_map('str_getcsv', file($path));
 
-        // El primer registro es la cabecera
         $header = array_map('trim', array_shift($rows));
 
         $data = [];
         foreach ($rows as $row) {
-            // Ignorar filas vacías o mal formadas
             if (count($row) < count($header)) {
                 continue;
             }
@@ -37,20 +32,21 @@ class CiclosFormativosSeeder extends Seeder
             $rec = array_combine($header, $row);
 
             $data[] = [
-                'familia'=>trim($rec['familia'] ?? ''),
-                'nivel'=>trim($rec['nivel'] ?? ''),
-                'cod_ciclo'=>trim($rec['cod_ciclo'] ?? ''),
-                'nombre'=>trim($rec['nombre'] ?? ''),
-
+                'familia_profesional_id' => trim($rec['familia'] ?? ''),
+                'nombre' => trim($rec['nombre'] ?? ''),
+                'codigo' => trim($rec['cod_ciclo'] ?? ''),
+                'grado' => trim($rec['nivel'] ?? ''),
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
         }
 
-        // Insertar/actualizar usando upsert para evitar duplicados por 'codigo'
         DB::transaction(function () use ($data) {
             foreach (array_chunk($data, 200) as $chunk) {
                 DB::table('ciclos_formativos')->upsert(
                     $chunk,
-                    ['familia', 'nivel', 'cod_ciclo', 'nombre']
+                    ['codigo', 'familia_profesional_id'],
+                    ['grado', 'nombre', 'updated_at']
                 );
             }
         });
