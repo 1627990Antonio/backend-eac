@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     $this->call([
         FamiliasProfesionalesSeeder::class,
         CiclosFormativosSeeder::class,
-        ModulosFormativosSeeder::class,
+        ModulosSeeder::class,
         ResultadosAprendizajeSeeder::class,
         CriteriosEvaluacionSeeder::class,
     ]);

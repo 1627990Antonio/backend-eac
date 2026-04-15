@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\FamiliaProfesional;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,6 +14,7 @@ class CiclosFormativosSeeder extends Seeder
      */
     public function run(): void
     {
+
         $path = database_path('seeders/csv/ciclos.csv');
 
         if (!file_exists($path)) {
@@ -32,7 +35,7 @@ class CiclosFormativosSeeder extends Seeder
             $rec = array_combine($header, $row);
 
             $data[] = [
-                'familia_profesional_id' => trim($rec['familia'] ?? ''),
+                'familia_profesional_id' => FamiliaProfesional::where('codigo', trim($rec['familia'] ?? ''))->first()->id,
                 'nombre' => trim($rec['nombre'] ?? ''),
                 'codigo' => trim($rec['cod_ciclo'] ?? ''),
                 'grado' => trim($rec['nivel'] ?? ''),
@@ -45,7 +48,7 @@ class CiclosFormativosSeeder extends Seeder
             foreach (array_chunk($data, 200) as $chunk) {
                 DB::table('ciclos_formativos')->upsert(
                     $chunk,
-                    ['codigo', 'familia_profesional_id'],
+                    ['codigo'],
                     ['grado', 'nombre', 'updated_at']
                 );
             }

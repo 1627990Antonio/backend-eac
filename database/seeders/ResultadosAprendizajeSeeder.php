@@ -35,9 +35,8 @@ class ResultadosAprendizajeSeeder extends Seeder
 
             $data[] = [
                 'cod_modulo' => trim($rec['cod_modulo'] ?? ''),
-                'id_ra' => trim($rec['id_ra'] ?? ''),
-                'definicion' => trim($rec['definicion'] ?? ''),
-                'tipo' => trim($rec['tipo'] ?? ''),
+                'descripcion' => trim($rec['definicion'] ?? ''),
+                'codigo' => trim($rec['tipo'] ?? ''),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
