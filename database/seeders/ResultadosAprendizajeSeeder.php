@@ -34,9 +34,9 @@ class ResultadosAprendizajeSeeder extends Seeder
             $rec = array_combine($header, $row);
 
             $data[] = [
-                'cod_modulo' => trim($rec['cod_modulo'] ?? ''),
+                'modulo_id' => DB::table('modulos')->where('codigo', trim($rec['cod_modulo'] ?? ''))->value('id'),
+                'codigo' => "RA" . trim($rec['id_ra'] ?? ''),
                 'descripcion' => trim($rec['definicion'] ?? ''),
-                'codigo' => trim($rec['tipo'] ?? ''),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -46,8 +46,8 @@ class ResultadosAprendizajeSeeder extends Seeder
             foreach (array_chunk($data, 200) as $chunk) {
                 DB::table('resultados_aprendizaje')->upsert(
                     $chunk,
-                    ['cod_modulo', 'id_ra'],
-                    ['definicion', 'tipo']
+                    ['modulo_id', 'codigo'],
+                    ['descripcion', 'updated_at']
                 );
             }
         });
