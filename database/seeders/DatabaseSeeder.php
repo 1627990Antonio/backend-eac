@@ -14,13 +14,14 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-{
-    $this->call([
+    {
+        $this->call([
         FamiliasProfesionalesSeeder::class,
         CiclosFormativosSeeder::class,
         ModulosSeeder::class,
         ResultadosAprendizajeSeeder::class,
         CriteriosEvaluacionSeeder::class,
+        EcosistemaLaboralSeeder::class,
     ]);
 }
 }

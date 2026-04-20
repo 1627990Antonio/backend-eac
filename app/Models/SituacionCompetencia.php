@@ -56,7 +56,7 @@ class SituacionCompetencia extends Model
         );
     }
 
-    public function criterioEvaluacion(): BelongsToMany
+    public function criteriosEvaluacion(): BelongsToMany
     {
         return $this->belongsToMany(
             CriterioEvaluacion::class,
@@ -66,18 +66,8 @@ class SituacionCompetencia extends Model
         )->withPivot('peso_en_sc');
     }
 
-    public function situacionesConquistadas(): BelongsToMany
+    public function perfilesHabilitacion(): HasMany
     {
-        return $this->belongsToMany(
-            PerfilHabilitacion::class,
-            'perfil_situacion',
-            'situacion_competencia_id',
-            'perfil_habilitacion_id'
-        )->withPivot(
-            'gradiente_autonomia',
-            'puntuacion_conquista',
-            'intentos',
-            'fecha_conquista'
-        );
+        return $this->hasMany(PerfilSituacion::class, 'situacion_competencia_id');
     }
 }

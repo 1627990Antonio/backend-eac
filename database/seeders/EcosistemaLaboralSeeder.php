@@ -13,7 +13,7 @@ use App\Models\ResultadoAprendizaje;
 use App\Models\Role;
 use App\Models\SituacionCompetencia;
 use App\Models\User;
-use CicloFormativo;
+use App\Models\CicloFormativo;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

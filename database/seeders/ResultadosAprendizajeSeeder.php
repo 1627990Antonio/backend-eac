@@ -36,7 +36,7 @@ class ResultadosAprendizajeSeeder extends Seeder
             $data[] = [
                 'modulo_id' => DB::table('modulos')->where('codigo', trim($rec['cod_modulo'] ?? ''))->value('id'),
                 'codigo' => "RA" . trim($rec['id_ra'] ?? ''),
-                'descripcion' => trim($rec['definicion'] ?? ''),
+                'descripcion' => $rec['definicion'] ?? null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

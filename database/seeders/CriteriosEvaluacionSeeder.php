@@ -62,7 +62,7 @@ class CriteriosEvaluacionSeeder extends Seeder
             foreach (array_chunk($data, 200) as $chunk) {
                 DB::table('criterios_evaluacion')->upsert(
                     $chunk,
-                    ['codigo'],
+                    ['resultado_aprendizaje', 'codigo'],
                     ['descripcion', 'updated_at']
                 );
             }
