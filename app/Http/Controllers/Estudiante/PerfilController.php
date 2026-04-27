@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Estudiante;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\PerfilHabilitacion;
+use Illuminate\Contracts\View\View;
 
 // app/Http/Controllers/Estudiante/PerfilController.php
 class PerfilController extends Controller

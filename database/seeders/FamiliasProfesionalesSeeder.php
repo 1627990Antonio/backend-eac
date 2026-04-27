@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,8 +14,9 @@ class FamiliasProfesionalesSeeder extends Seeder
     {
         $path = database_path('seeders/csv/familias.csv');
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             $this->command->error("CSV no encontrado: $path");
+
             return;
         }
 

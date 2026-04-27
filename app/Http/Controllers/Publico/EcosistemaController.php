@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Publico;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\EcosistemaLaboral;
+use Illuminate\Contracts\View\View;
 
 // app/Http/Controllers/Publico/EcosistemaController.php
 class EcosistemaController extends Controller

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -17,8 +16,9 @@ class SituacionCompetencia extends Model
         'descripcion',
         'umbral_maestria',
         'nivel_complejidad',
-        'activa'
+        'activa',
     ];
+
     protected $table = 'situaciones_competencia';
 
     protected $casts = [

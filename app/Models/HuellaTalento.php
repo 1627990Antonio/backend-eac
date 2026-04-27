@@ -15,8 +15,8 @@ class HuellaTalento extends Model
     protected $table = 'huellas_talento';
 
     protected $casts = [
-        'payload'      => 'array',
-        'generada_en'  => 'datetime',
+        'payload' => 'array',
+        'generada_en' => 'datetime',
     ];
 
     public function estudiante(): BelongsTo

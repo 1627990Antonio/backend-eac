@@ -10,6 +10,7 @@ class NodoRequisito extends Model
     protected $fillable = [
         'situacion_competencia_id', 'tipo', 'descripcion', 'orden',
     ];
+
     protected $table = 'nodos_requisito';
 
     public function situacionCompetencia(): BelongsTo

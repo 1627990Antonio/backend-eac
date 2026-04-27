@@ -11,6 +11,7 @@ class CriterioEvaluacion extends Model
     protected $fillable = [
         'resultado_aprendizaje_id', 'codigo', 'descripcion',
     ];
+
     protected $table = 'criterios_evaluacion';
 
     public function resultadoAprendizaje(): BelongsTo

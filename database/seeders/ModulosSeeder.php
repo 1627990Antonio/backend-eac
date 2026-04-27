@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\CicloFormativo;
 use App\Models\Modulo;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -14,14 +13,15 @@ class ModulosSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-     public function run(): void
+    public function run(): void
     {
         Schema::disableForeignKeyConstraints();
 
         $path = database_path('seeders/csv/modulos.csv');
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             $this->command->error("CSV no encontrado: $path");
+
             return;
         }
 
@@ -57,8 +57,9 @@ class ModulosSeeder extends Seeder
 
         $path = database_path('seeders/csv/ciclo_modulo_relaciones.csv');
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             $this->command->error("CSV no encontrado: $path");
+
             return;
         }
 
@@ -75,8 +76,9 @@ class ModulosSeeder extends Seeder
             $rec = array_combine($header, $row);
 
             $ciclo = CicloFormativo::where('codigo', trim($rec['cod_ciclo'] ?? ''))->first();
-            if (!$ciclo) {
-                $this->command->error("Ciclo formativo no encontrado para código: " . trim($rec['cod_ciclo'] ?? ''));
+            if (! $ciclo) {
+                $this->command->error('Ciclo formativo no encontrado para código: '.trim($rec['cod_ciclo'] ?? ''));
+
                 continue;
             }
 

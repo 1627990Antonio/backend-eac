@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Docente;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Role;
+use Illuminate\Contracts\View\View;
 
 // app/Http/Controllers/Docente/DashboardController.php
 class DashboardController extends Controller

@@ -11,6 +11,7 @@ class PerfilHabilitacion extends Model
     protected $fillable = [
         'estudiante_id', 'ecosistema_laboral_id', 'calificacion_actual',
     ];
+
     protected $table = 'perfiles_habilitacion';
 
     protected $casts = ['calificacion_actual' => 'decimal:2'];
@@ -45,7 +46,7 @@ class PerfilHabilitacion extends Model
     public function codigosConquistados(): array
     {
         return $this->situacionesConquistadas()
-                    ->pluck('codigo')
-                    ->toArray();
+            ->pluck('codigo')
+            ->toArray();
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Publico;
 
 use App\Http\Controllers\Controller;
+use App\Models\FamiliaProfesional;
+use App\Models\Modulo;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 // app/Http/Controllers/Publico/ModuloController.php
@@ -13,13 +16,12 @@ class ModuloController extends Controller
         $familias = FamiliaProfesional::orderBy('nombre')->get();
 
         $modulos = Modulo::with([
-                'cicloFormativo.familiaProfesional',
-                'ecosistemasLaborales' => fn($q) => $q->where('activo', true),
-            ])
-            ->whereHas('ecosistemasLaborales', fn($q) => $q->where('activo', true))
-            ->when($request->filled('familia'), fn($q) =>
-                $q->whereHas('cicloFormativo',
-                    fn($q2) => $q2->where('familia_profesional_id', $request->familia))
+            'cicloFormativo.familiaProfesional',
+            'ecosistemasLaborales' => fn ($q) => $q->where('activo', true),
+        ])
+            ->whereHas('ecosistemasLaborales', fn ($q) => $q->where('activo', true))
+            ->when($request->filled('familia'), fn ($q) => $q->whereHas('cicloFormativo',
+                fn ($q2) => $q2->where('familia_profesional_id', $request->familia))
             )
             ->orderBy('codigo')
             ->paginate(15);
@@ -33,8 +35,8 @@ class ModuloController extends Controller
         $modulo->load([
             'cicloFormativo.familiaProfesional',
             'resultadosAprendizaje.criteriosEvaluacion',
-            'ecosistemasLaborales' => fn($q) => $q->where('activo', true)
-                                                   ->withCount('situacionesCompetencia'),
+            'ecosistemasLaborales' => fn ($q) => $q->where('activo', true)
+                ->withCount('situacionesCompetencia'),
         ]);
 
         return view('publico.modulos.show', compact('modulo'));

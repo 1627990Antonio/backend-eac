@@ -11,6 +11,7 @@ class ResultadoAprendizaje extends Model
     protected $fillable = [
         'modulo_id', 'codigo', 'descripcion',
     ];
+
     protected $table = 'resultados_aprendizaje';
 
     public function modulo(): BelongsTo
