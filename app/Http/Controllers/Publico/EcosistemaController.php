@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Publico;
 
 use App\Http\Controllers\Controller;
 use App\Models\EcosistemaLaboral;
-use Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 
-// app/Http/Controllers/Publico/EcosistemaController.php
 class EcosistemaController extends Controller
 {
     public function __invoke(EcosistemaLaboral $ecosistema): View

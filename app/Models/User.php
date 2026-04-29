@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +15,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -49,7 +51,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function roles(): BelongsToMany
+    public function userRoles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_roles')
             ->withPivot('ecosistema_laboral_id')
@@ -87,7 +89,7 @@ class User extends Authenticatable
     // Método helper que consulta la relación roles y devuelve true/false
     public function hasRole(string $role): bool
     {
-        // Se usa la relación 'roles' definida en el modelo User
-        return $this->roles()->where('name', $role)->exists();
+        // Se usa la relación 'userRoles' definida en el modelo User
+        return $this->userRoles()->where('name', $role)->exists();
     }
 }

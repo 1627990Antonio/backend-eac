@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Docente;
 use App\Http\Controllers\Controller;
 use App\Models\EcosistemaLaboral;
 use App\Models\PerfilSituacion;
-use Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 
-// app/Http/Controllers/Docente/EcosistemaController.php
 class EcosistemaController extends Controller
 {
     public function __invoke(EcosistemaLaboral $ecosistema): View
@@ -39,10 +38,10 @@ class EcosistemaController extends Controller
                 return [
                     $sc->codigo => PerfilSituacion::whereHas(
                         'perfilHabilitacion',
-                        fn ($q) => $q->where('ecosistema_laboral_id', $sc->ecosistema_laboral_id)
+                        fn($q) => $q->where('ecosistema_laboral_id', $sc->ecosistema_laboral_id)
                     )
-                        ->where('situacion_competencia_id', $sc->id)
-                        ->count(),
+                    ->where('situacion_competencia_id', $sc->id)
+                    ->count(),
                 ];
             });
 

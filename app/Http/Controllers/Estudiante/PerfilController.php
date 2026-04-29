@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Estudiante;
 
 use App\Http\Controllers\Controller;
 use App\Models\PerfilHabilitacion;
-use Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 
-// app/Http/Controllers/Estudiante/PerfilController.php
 class PerfilController extends Controller
 {
     public function __invoke(PerfilHabilitacion $perfil): View

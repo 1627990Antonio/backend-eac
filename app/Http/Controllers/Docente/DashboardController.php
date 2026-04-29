@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Docente;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
-use Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 
-// app/Http/Controllers/Docente/DashboardController.php
 class DashboardController extends Controller
 {
     public function __invoke(): View

@@ -11,14 +11,14 @@
                     Mi espacio
                 </p>
                 <a href="{{ route('estudiante.dashboard') }}"
-                   class="flex items-center px-3 py-2 rounded-lg text-sm
+                    class="flex items-center px-3 py-2 rounded-lg text-sm
                           {{ request()->routeIs('estudiante.dashboard') ? 'bg-vfds-surface text-vfds-primary font-semibold' : 'text-gray-600 hover:bg-gray-50' }}">
                     Panel general
                 </a>
-                <a href="{{ route('estudiante.modulos.index') }}"
-                   class="flex items-center px-3 py-2 rounded-lg text-sm
-                          {{ request()->routeIs('estudiante.modulos*') ? 'bg-vfds-surface text-vfds-primary font-semibold' : 'text-gray-600 hover:bg-gray-50' }}">
-                    Mis módulos
+                <a href="{{ route('publico.modulos.index') }}"
+                    class="flex items-center px-3 py-2 rounded-lg text-sm
+                          {{ request()->routeIs('publico.modulos*') ? 'bg-vfds-surface text-vfds-primary font-semibold' : 'text-gray-600 hover:bg-gray-50' }}">
+                    Catálogo de módulos
                 </a>
             </nav>
         </aside>
