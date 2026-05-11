@@ -10,22 +10,18 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
     Route::get('modulos',         [V1\ModuloController::class, 'index'])->name('modulos.index');
     Route::get('modulos/{modulo}', [V1\ModuloController::class, 'show'])->name('modulos.show');
 
-    Route::get('ecosistemas/{ecosistema}',              [V1\EcosistemaController::class, 'show'])
-        ->name('ecosistemas.show');
-    Route::get('ecosistemas/{ecosistema}/situaciones',  [V1\EcosistemaController::class, 'situaciones'])
-        ->name('ecosistemas.situaciones');
+    Route::get('ecosistemas/{ecosistema}',              [V1\EcosistemaController::class, 'show'])->name('ecosistemas.show');
+    Route::get('ecosistemas/{ecosistema}/situaciones',  [V1\EcosistemaController::class, 'situaciones'])->name('ecosistemas.situaciones');
 
     // ── Autenticados (Sanctum) ───────────────────────────────────────────────────
     Route::middleware('auth:sanctum')->group(function () {
 
         // Estudiante
         Route::prefix('estudiante')->name('estudiante.')->group(function () {
-            Route::get('perfil',                [V1\Estudiante\PerfilController::class, 'index'])
-                ->name('perfil.index');
-            Route::get('perfil/{ecosistema}',   [V1\Estudiante\PerfilController::class, 'show'])
-                ->name('perfil.show');
-            Route::post('matriculas',           V1\Estudiante\MatriculaController::class)
-                ->name('matriculas.store');
+            Route::get('perfil',                [V1\Estudiante\PerfilController::class, 'index'])->name('perfil.index');
+            Route::get('perfil/{ecosistema}',   [V1\Estudiante\PerfilController::class, 'show'])->name('perfil.show');
+            Route::post('matriculas',           V1\Estudiante\MatriculaController::class)->name('matriculas.store');
+            Route::get('perfil/{ecosistema}/zdp', V1\Estudiante\ZdpController::class)->name('zdp');
         });
 
         // Docente
