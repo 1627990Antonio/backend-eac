@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Estudiante;
 
 use App\Http\Controllers\Controller;
+use App\Services\GrafoService;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
